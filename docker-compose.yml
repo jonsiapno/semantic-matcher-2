@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # ChromaDB - Vector Database Service
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: semantic-matcher-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+    restart: unless-stopped
+    networks:
+      - semantic-matcher
+
+  # Main Application - Interactive CLI
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: semantic-matcher-app
+    depends_on:
+      - chromadb
+    environment:
+      - NODE_ENV=production
+      - CHROMADB_URL=http://chromadb:8000
+      - LOG_LEVEL=info
+    command: ["node", "src/cli.mjs"]
+    stdin_open: true
+    tty: true
+    networks:
+      - semantic-matcher
+
+  # Web API Server (Optional Profile)
+  api-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: semantic-matcher-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - chromadb
+    environment:
+      - NODE_ENV=production
+      - CHROMADB_URL=http://chromadb:8000
+      - PORT=3000
+      - LOG_LEVEL=info
+    command: ["node", "src/app.mjs"]
+    restart: unless-stopped
+    profiles:
+      - api
+    networks:
+      - semantic-matcher
+
+networks:
+  semantic-matcher:
+    driver: bridge
+
+volumes:
+  chroma_data:
+    driver: local

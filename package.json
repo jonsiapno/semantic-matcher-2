@@ -1,0 +1,24 @@
+{
+  "name": "semantic-matcher-2",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Professional semantic matching template with ChromaDB - production-ready starting point",
+  "main": "src/app.mjs",
+  "scripts": {
+    "start": "node src/app.mjs",
+    "cli": "node src/cli.mjs",
+    "dev:web": "NODE_ENV=development node src/app.mjs",
+    "dev:cli": "NODE_ENV=development node src/cli.mjs"
+  },
+  "keywords": ["semantic-search", "chromadb", "vector-database", "embeddings", "template"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chromadb": "^1.10.3",
+    "chromadb-default-embed": "^2.13.2",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
