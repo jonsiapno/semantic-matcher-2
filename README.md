@@ -1,11 +1,11 @@
 # Semantic Matcher v2.0
 
-A professional, production-ready semantic matching template using ChromaDB vector database. This application provides intelligent text matching capabilities that go beyond keyword search to understand meaning and context.
+A semantic matching template using ChromaDB vector database. This application provides intelligent text matching capabilities that go beyond keyword search to understand meaning and context.
 
 ## Features
 
 - **Semantic Search**: Vector-based similarity matching using sentence transformers
-- **Professional Architecture**: Clean, extensible codebase with proper error handling
+- **Architecture**: Extensible codebase with error handling
 - **Multiple Interfaces**: Interactive CLI and optional REST API
 - **Docker Ready**: Complete containerized deployment
 - **Configurable**: Environment-based configuration with sensible defaults
