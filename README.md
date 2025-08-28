@@ -21,7 +21,7 @@ A semantic matching template using ChromaDB vector database. This application pr
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/jonsiapno/semantic-matcher-2
 cd semantic-matcher-2
 
 # Start with interactive CLI (default)
